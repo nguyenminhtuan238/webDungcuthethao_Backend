@@ -1,0 +1,12 @@
+const express=require('express')
+const router=express.Router()
+const comment=require('../controller/comments')
+const verifytoken = require('../middleware/auth')
+const verifytokenadmin = require('../middleware/admin')
+router.get('/', comment.findAll)
+router.get('/:id', comment.findone)
+router.post('/',verifytoken,comment.create)
+router.put('/:id', verifytoken,comment.update)
+router.delete('/:id', verifytoken,comment.deleteOne)
+router.delete('/Admin/:id', verifytokenadmin,comment.deleteadminone)
+module.exports=router

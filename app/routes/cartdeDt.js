@@ -1,0 +1,13 @@
+const express=require('express')
+const router=express.Router()
+const cartDt=require('../controller/cartdeDt')
+const verifytoken = require('../middleware/auth')
+router.get('/ALL/', cartDt.findAll)
+router.get('/',verifytoken,cartDt.finduser)
+router.get('/confirm/', cartDt.findconfirm)
+router.post('/cart/', cartDt.findcart)
+router.post('/',verifytoken,cartDt.create)
+router.put('/quantity/:id', verifytoken,cartDt.updatesl)
+router.put('/confirm/:id',cartDt.updateconfirm)
+router.delete('/:id', verifytoken,cartDt.deleteOne)
+module.exports=router

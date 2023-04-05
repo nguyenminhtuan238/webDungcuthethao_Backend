@@ -1,0 +1,11 @@
+const express=require('express')
+const type=require('../controller/type')
+const verifytokenadmin = require('../middleware/admin')
+const router=express.Router()
+router.get('/',type.findAll)
+router.get('/:id',type.findOne)
+router.get('/search/:id',type.Search)
+router.post('/',verifytokenadmin,type.create)
+router.put('/:id',verifytokenadmin,type.update)
+router.delete('/:id',verifytokenadmin,type.deteleOne)
+module.exports=router

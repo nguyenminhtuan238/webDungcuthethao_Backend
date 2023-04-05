@@ -1,0 +1,13 @@
+const express = require('express')
+const router = express.Router()
+const product=require('../controller/product')
+const verifytokenadmin = require('../middleware/admin')
+router.get('/', product.findAll)
+router.get('/:id', product.findOne)
+router.put('/Image/:id',product.uploadphoto,product.setImagemall)
+router.post('/', verifytokenadmin,product.uploadImage,product.create)
+router.put('/:id',verifytokenadmin,product.uploadImage, product.update)
+router.put('/Kho/:id',verifytokenadmin,product.updateKho)
+router.put('/Daban/:id',verifytokenadmin,product.updatedaban)
+router.delete('/:id',verifytokenadmin,product.deleteOne)
+module.exports = router
